@@ -1,0 +1,14 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>Log in</p>
+
+    <form method="POST" action="{% url 'users:login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Log in</button>
+    </form>
+
+    <input type="hidden" name="next"
+        value="{% url 'news:home' %}"
+{% endblock content %}

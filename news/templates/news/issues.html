@@ -1,0 +1,14 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>All issues</p>
+    <ul>
+        {% for issue in issues %}
+            <li><a href="{% url 'news:issue-detail' issue.slug %}">{{ issue }}</a></li>
+        {% empty %}
+            <li>No issues created yet!</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'news:create-issue' %}">Create an issue!</a></p>
+{% endblock content %}

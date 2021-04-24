@@ -1,0 +1,33 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>{{ article.title }}</p>
+    <p>{{ article.description|linebreaks }}</p>
+    <p>Created by 
+    <a href="{% url 'users:profile' article.created_by.username %}">{{ article.created_by }}</a></p>
+    <p><img src="{{ article.image.url }}" /> {{ article.image }}</p>
+    <p>{{ article.content|linebreaks }}</p>
+    <p>This article is in the following issues:</p>
+    <ul>
+        {% for issue in article.issues.all %}
+            <li>{{ issue }}</li>
+        {% empty %}
+            <li>No issues have been created yet.</li>
+        {% endfor %}
+    </ul>
+
+    <p>Comments</p>
+    <ul>
+        {% for comment in article.comment_set.all %}
+            <li>
+                <p>{{ comment.text }}</p>
+                <p><a href="{% url 'news:edit-comment' comment.id %}">edit comment</a></p>
+            </li>
+        {% empty %}
+            <li>There are no comments.</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'news:create-comment' article.id %}">Create a comment!</a></p>
+    <p><a href="{% url 'news:edit-article' article.id %}">Edit this article</a></p>
+{% endblock content %}

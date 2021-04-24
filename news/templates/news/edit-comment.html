@@ -1,0 +1,12 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>Edit comment</p>
+    <p>You're Commenting on the article {{ article }}</p>
+
+    <form method="POST" action="{% url 'news:edit-comment' comment.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Save changes</a>
+    </form>
+{% endblock content %}

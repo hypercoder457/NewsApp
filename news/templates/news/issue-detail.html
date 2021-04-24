@@ -1,0 +1,19 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>Issue: {{ issue }}</p>
+
+    <p>This issue is associated with the following articles</p>
+    <ul>
+        {% for article in issue.articles.all %}
+            <li><a href="{% url 'news:article-detail' article.slug %}">{{ article }}</a></li>
+        {% empty %}
+            <li>No articles yet!</li>
+        {% endfor %}
+    </ul>
+
+    <p>Issue description</p>
+    <p>{{ issue.description|linebreaks }}</p>
+
+    <p><a href="{% url 'news:edit-issue' issue.id %}">Edit this issue</a></p>
+{% endblock content %}

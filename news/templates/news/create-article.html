@@ -1,0 +1,11 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>Create an article</p>
+
+    <form method="POST" action="{% url 'news:create-article' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Create article</button>
+    </form>
+{% endblock content %}

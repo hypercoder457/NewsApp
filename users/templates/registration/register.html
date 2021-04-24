@@ -1,0 +1,15 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>Sign up</p>
+
+    <form method="POST" action="{% url 'users:register' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p>---------------------</p>
+        <br>
+        <p>Create profile</p>
+        {{ profile_form.as_p }}
+        <button name="submit">Register!</button>
+    </form>
+{% endblock content %}

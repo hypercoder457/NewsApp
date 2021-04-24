@@ -1,0 +1,12 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>Edit your profile</p>
+
+    <form method="POST" action="{% url 'users:edit-profile' user.email %}" 
+        enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Save profile</button>
+    </form>
+{% endblock content %}

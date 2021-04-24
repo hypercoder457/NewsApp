@@ -1,0 +1,12 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>You are about to DELETE your account. Are you sure?</p>
+    <p>IF you want to delete your account, please confirm your password below:</p>
+
+    <form method="POST" action="{% url 'users:delete-account' user.email %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit" style="color: red">DELETE ACCOUNT</button>
+    </form>
+{% endblock content %}

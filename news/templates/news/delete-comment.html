@@ -1,0 +1,9 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete the comment {{ object }}?</p>
+        <button name="submit">DELETE</button>
+    </form>
+{% endblock content %}

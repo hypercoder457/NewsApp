@@ -1,0 +1,13 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>All articles are over here!</p>
+
+    {% for article in articles %}
+        <li><a href="{% url 'news:article-detail' article.slug %}">{{ article }}</a></li>
+    {% empty %}
+        <li>No articles yet!</li>
+    {% endfor %}
+
+    <p><a href="{% url 'news:create-article' %}">Create a new article!</a></p>
+{% endblock content %}

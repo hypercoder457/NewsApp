@@ -1,0 +1,28 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+    <p>Profile of {{ user }}</p>
+    {% if user.profile.avatar %}
+        <img src="{{ user.profile.avatar.url }}" /> {{ user.profile.avatar }}
+    {% endif %}
+    {% if user.profile.about %}
+        <p>{{ user.profile.about|linebreaks }}</p>
+    {% endif %}
+    <p>Articles created:</p>
+    <ul>
+        {% for article in user.article_set.all %}
+            <li><a href="{% url 'news:article-detail' article.slug %}">{{ article }}</a></li>
+        {% empty %}
+            <li>No articles created by this user yet!</li>
+        {% endfor %}
+    </ul>
+
+    <p>Registered at {{ user.date_joined }}</p>
+    <p>Last seen (last logged in) at {{ user.last_login }}</p>
+
+    {% if user == request.user %}
+        <p><a href="{% url 'users:edit-profile' user.email %}">Edit profile</a></p>
+        <p><a href="{% url 'users:change-password' %}">Change password</a></p>
+        <p><a href="{% url 'users:delete-account' user.email %}">Delete account</a></p>
+    {% endif %}
+{% endblock content %}
